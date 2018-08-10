@@ -1,8 +1,10 @@
 package example
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.annotations.SerializedName
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 
 
 private val site = Site("demo", listOf(
@@ -13,23 +15,23 @@ private val site = Site("demo", listOf(
 ))
 
 fun main(args: Array<String>) {
-    val gson = GsonBuilder().setPrettyPrinting().create()
-    val json = gson.toJson(site)
+    val mapper = ObjectMapper().apply {
+        registerKotlinModule()
+        enable(SerializationFeature.INDENT_OUTPUT)
+    }
+
+    val json = mapper.writeValueAsString(site)
     println(json)
 
-    val site = gson.fromJson(json, Site::class.java)
+    val site = mapper.readValue(json, Site::class.java)
     println(site)
 }
 
 
-enum class State(val value: String) {
-    @SerializedName("_published_")
-    Published("_published_"),
-
-    @SerializedName("_draft_")
-    Draft("_draft_")
+enum class State(@JsonValue val value: String) {
+    Published("_published_"), Draft("_draft_")
 }
 
 data class Article(val title: String, val content: String?, val timestamp: Long, val state: State)
 data class Category(val title: String, val articles: List<Article>)
-data class Site(val name: String, val categories: List<Category>)
+data class Site(@JsonProperty("site_name") val name: String, val categories: List<Category>)

@@ -1,6 +1,6 @@
-Kotlin Gson Demo
-================
+Kotlin Jackson Demo
+===================
 
-Kotlin data classes <-----(gson)----> json
+Kotlin data classes <-----(jackson)----> json
 
 Open it in IDE and run `Hello.kt`

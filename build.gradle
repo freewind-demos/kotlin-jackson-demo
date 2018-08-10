@@ -22,12 +22,9 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile 'com.google.code.gson:gson:2.8.5'
-    compile "org.apache.commons:commons-lang3:3.7"
-    compile "commons-io:commons-io:2.6"
-    testCompile "junit:junit:4.11"
-    testCompile 'org.assertj:assertj-core:3.9.0'
-    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    compile 'com.fasterxml.jackson.core:jackson-core:2.9.6'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.6'
+    compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.6'
 }
 
 // gradle wrapper --gradle-version 4.8.1
