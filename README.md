@@ -1,4 +1,6 @@
-Kotlin Hello World Demo
-=======================
+Kotlin Gson Demo
+================
 
-Hello world from kotlin. Open it in IDE and run `Hello.kt`
+Kotlin data classes <-----(gson)----> json
+
+Open it in IDE and run `Hello.kt`
